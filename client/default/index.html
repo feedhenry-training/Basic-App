@@ -1,0 +1,73 @@
+<!--
+This file demonstrates how to use a shared configuration file. In this
+case the absolute path of the file is /shared/config.js. Shared 
+configuration can be used to ensure:
+a) A version of the applications configuration is bundled with the app  
+   at build time - i.e. the locally included config.js file
+b) The latest version of the applications configuration can be loaded 
+   using a cloud action call
+
+To fully appreciate local vs cloud config: build this app and install it on a 
+device. Once installed, change the contents of the config variable in config.js 
+from within the Studio and click the button to "Execute cloud action call" in 
+the app on the device. 
+Notice how the config returned from the cloud action call reflects the changes 
+just made, while the local config remain static. Using this method, you can keep 
+your apps updated with new configuration information without the need to publish  
+a new app to the app store.
+-->
+
+<link href="css/style.css" rel="stylesheet" />
+
+<h1>New Application</h1>
+
+<p> Click on the button below to make a cloud "action" call which will return 
+  the latest configuration information from the shared config.js file</p>
+
+<button id='run_button'> Execute cloud action call </button>
+
+<p> Config from locally included config.js : </p>
+<div id="localConfig">
+
+</div>
+
+<p> Config from cloud action call: </p>
+<div id="cloudConfig">
+
+</div>
+
+<!-- Include the config.js file from the shared directory 
+(as if it was in the local directory) -->
+<script src="config.js" type="text/javascript"></script>
+
+<!-- include the init.js file from within the default package -->
+<script src="js/init.js" type="text/javascript"></script>
+
+
+<!-- 
+The client directory contains all files which may be included when an app is 
+built.
+
+The client directory is divided into "packages" - incremental units of 
+functionality and configuration.
+
+Every app will always include the files within the "default" package - 
+represented by the path /client/default/ - i.e. the directory containing this 
+file.
+
+New packages can be defined by creating additional directories within the client
+directory. To associate a particular package with a destination (iPhone, iPad, 
+Android etc), add the "package" (i.e. directory) name to the packages field 
+within the configuration section of the studio. 
+
+Multiple packages can be associated with a destination by adding multiple package
+names - separated by spaces - to the packages field in the configuration section.
+If multiple packages are defined, the packages are applied incrementally - i.e. 
+if the same file exists in multiple packages the order that the packages are 
+listed will determine which package the file is pulled from. The package names 
+are listed in order of significance with the most significant package name listed 
+first. 
+
+The contents of the default package are always included as the least significant 
+package.
+-->
